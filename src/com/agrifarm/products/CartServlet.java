@@ -3,7 +3,9 @@ package com.agrifarm.products;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -109,6 +111,17 @@ public class CartServlet extends HttpServlet {
 	protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		// add ID to cartIdsList
+		Set<String> cartIdsList = new HashSet<String>();
+		if (session.getAttribute("cart") == null) {
+			cartIdsList.add(request.getParameter("id"));
+			session.setAttribute("cartIdsList", cartIdsList);
+		}else {
+			cartIdsList = (Set<String>) session.getAttribute("cartIdsList");
+			cartIdsList.add(request.getParameter("id"));
+			session.setAttribute("cartIdsList", cartIdsList);
+		}
+		
 		if (session.getAttribute("cart") == null) {
 			List<Item> cart = new ArrayList<Item>();
 			cart.add(new Item(ProductList.getProductByID(request.getParameter("id")), 1));

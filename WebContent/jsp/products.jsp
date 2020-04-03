@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Food Code Proudly Presents By Themexpert</title>
+	<title>OM AGRI FARM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 	<!-- Fonts -->
@@ -74,6 +74,9 @@
 		            $('#myModalAddedCart').modal('show'); 
 					// Edit product Count at Notification and blink it
 					$('#productCount').html(json_obj.count);
+					$('#addToCart').html("Go To Cart");
+					$("#addToCart").attr("href","path?action=checkout");
+					
 			    }
 			  };
 			  xhttp.open("GET", "/OmAgriFarmApp/cart?action=buy&id="+aId, true);
@@ -286,8 +289,20 @@
 									</a>
 									<p class="price">From: ${product.price}</p>
 									<div >
-										<a class="view-link shutter" href="javascript:onclickFunction('${product.id}')">
+										<c:set var="contains" value="no" />
+											<c:forEach var="item" items="${sessionScope.cartIdsList}">
+											  <c:if test="${item eq product.id}">
+											    <c:set var="contains" value="yes" />
+											  </c:if>
+											</c:forEach>
+									 <c:if test="${contains eq 'no'}">
+										<a id="addToCart" class="view-link shutter" href="javascript:onclickFunction('${product.id}')">
 										<i class="fa fa-plus-circle"></i>Add To Cart</a>
+									 </c:if>
+									<c:if test="${contains eq 'yes'}">
+										<a class="view-link shutter" href="path?action=checkout">
+										<i class="fa fa-plus-circle"></i>Go To Cart</a>
+									 </c:if>	
 									</div>
 								</div>	<!-- End of /.products -->
 					        </li>
