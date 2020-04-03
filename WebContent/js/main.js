@@ -45,6 +45,26 @@ $(document).ready(function() {
 	$('#myTab a').click(function (e) {
 		e.preventDefault()
 		$(this).tab('show')
-	})
+	});
+	
+	function onclickFunction(aId){
+		
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange=function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      var json_obj = $.parseJSON(this.responseText);//parse JSON
+	        	// Add response in Modal body
+	            $('.modal-body-cart').html(json_obj.message);
+	            // Display Modal
+	            $('#myModalAddedCart').modal('show'); 
+				// Edit product Count at Notification and blink it
+				$('#productCount').html(json_obj.count);
+		    }else{
+		    	alert("Sorry, Server error");
+		    }
+		  };
+		  xhttp.open("GET", "/OmAgriFarmApp/cart?action=buy&id="+aId, true);
+		  xhttp.send();
+	}
 
 });

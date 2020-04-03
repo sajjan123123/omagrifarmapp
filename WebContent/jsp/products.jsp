@@ -38,9 +38,9 @@
 	
 	<script>
 	
-		function onclickFunction(aId){
+		/* function onclickFunction22(aId){
 		    $.ajax({
-		        type: "get",
+		        type: "post",
 		        url: "/OmAgriFarmApp/cart?action=buy",
 		        data: {
 		            id:aId
@@ -59,8 +59,27 @@
 		        }
 		    });
 		    return false;
+		} */
+
+
+		function onclickFunction(aId){
+			
+			var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange=function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			      var json_obj = $.parseJSON(this.responseText);//parse JSON
+		        	// Add response in Modal body
+		            $('.modal-body-cart').html(json_obj.message);
+		            // Display Modal
+		            $('#myModalAddedCart').modal('show'); 
+					// Edit product Count at Notification and blink it
+					$('#productCount').html(json_obj.count);
+			    }
+			  };
+			  xhttp.open("GET", "/OmAgriFarmApp/cart?action=buy&id="+aId, true);
+			  xhttp.send();
 		}
-	
+
 	</script>
 </head>
 <body>

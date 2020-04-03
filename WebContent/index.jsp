@@ -435,7 +435,7 @@
 						<p ><i class="fa  fa-map-marker"></i> <span>HOME Address:</span>Maratha Colony, <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&nbsp;&nbsp;Near Ganesh Temple, Dharwad</p>
 						<p> <i class="fa  fa-phone"></i> <span>Phone:</span>+91 9448130647 <br> &emsp;&emsp;&emsp;&emsp; &emsp;&nbsp;&nbsp;+91 9481014060</p>
  
-						<p class="mail"><i class="fa  fa-envelope"></i>Eamil: <span>gangahosmani@gmail.com</span></p>
+						<p class="mail"><i class="fa  fa-envelope"></i>Email: <span>gangahosmani@gmail.com</span></p>
 					</div>	<!-- End Of /.block -->
 				</div> <!-- End Of Col-md-3 -->
 			</div> <!-- End Of /.row -->
